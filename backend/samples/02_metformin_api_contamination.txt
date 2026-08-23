@@ -1,0 +1,27 @@
+Date: July 28, 2026
+From: Zenith Life Sciences Pvt. Ltd.
+To: Quality Assurance - API Manufacturer
+Subject: Customer Complaint - Metformin Hydrochloride API - Foreign Matter
+
+Complaint Reference: CC-2026-00154
+
+Dear Quality Team,
+
+Zenith Life Sciences Pvt. Ltd. is raising a formal customer complaint regarding a recently received shipment of Metformin Hydrochloride API.
+
+Product Information:
+- Product Name: Metformin Hydrochloride API
+- Product Grade: IP/BP
+- Batch / Lot Number: MFH260712A
+- Manufacturing Date: 25 June 2026
+- Expiry Date: Not Provided
+- Quantity Received: 25 kg in 1 HDPE Drum
+
+Complaint Description:
+During incoming quality control inspection, our team identified visible black particulate matter embedded within the bulk API powder. Upon sampling, foreign matter contamination was confirmed in three separate sample pulls from the same drum. The material does not appear to be product-related and may indicate environmental contamination or equipment cleaning failure during manufacture.
+
+This is a critical quality concern as this API is intended for formulation into finished oral solid dosage forms.
+
+Reporter: Mr. Vikram Iyer, QC Manager
+Contact: vikram.iyer@zenithlifesciences.com
+Organization: Zenith Life Sciences Pvt. Ltd.

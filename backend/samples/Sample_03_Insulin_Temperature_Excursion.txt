@@ -1,0 +1,10 @@
+COLD CHAIN BREACH & BIOLOGIC DEFECT REPORT
+Reporter: Fortis Healthcare Endocrinology Ward, Gurgaon
+Email: quality@fortishealthcare.com
+
+Product: Insulin Glargine 100 IU/ml Injection
+Batch Number: INS88210
+Expiry Date: Nov 2027
+
+Description:
+Upon receiving shipment of Insulin Glargine 100 IU/ml (Batch INS88210), temperature data logger reading revealed an excursion up to 14.2°C for over 5 hours during air freight transfer. Physical inspection of 3 vials showed visible cloudiness and fine protein flakes suspended in liquid. The ward has frozen usage of the entire batch shipment pending QA risk assessment and health authority guidance.

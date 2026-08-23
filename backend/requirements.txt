@@ -1,0 +1,12 @@
+fastapi>=0.109.0
+uvicorn>=0.27.0
+sqlalchemy>=2.0.25
+pydantic>=2.6.0
+langgraph>=0.0.26
+langchain-core>=0.1.20
+langchain-groq>=0.0.8
+groq>=0.4.0
+pypdf>=4.0.0
+pytest>=8.0.0
+httpx>=0.26.0
+python-multipart>=0.0.6
