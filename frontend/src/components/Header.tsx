@@ -9,45 +9,48 @@ interface HeaderProps {
   onTabChange: (tab: Tab) => void;
 }
 
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'workspace',   label: '✦ Complaint Workspace' },
+  { id: 'complaints',  label: 'Register' },
+  { id: 'dashboard',   label: 'Dashboard' },
+];
+
 const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   const dispatch = useAppDispatch();
   const aiStatus = useAppSelector(s => s.complaints.aiStatus);
 
-  useEffect(() => {
-    dispatch(fetchAIStatus());
-  }, [dispatch]);
+  useEffect(() => { dispatch(fetchAIStatus()); }, [dispatch]);
 
   const isOnline = aiStatus?.groq_available;
+  const modelLabel = isOnline
+    ? `llama-3.3-70b · Groq`
+    : 'Demo Mode';
 
   return (
     <header className="header">
       <div className="header-brand">
-        <div className="header-logo">QMS</div>
+        <div className="header-logo" title="AIVOA Pharma QMS">✦</div>
         <div className="header-title">
           AIVOA <span>Pharma QMS</span>
         </div>
       </div>
 
-      <nav className="header-nav">
-        {(['workspace', 'complaints', 'dashboard'] as Tab[]).map(tab => (
+      <nav className="header-nav" role="navigation" aria-label="Main navigation">
+        {TABS.map(tab => (
           <button
-            key={tab}
-            className={`nav-tab ${activeTab === tab ? 'active' : ''}`}
-            onClick={() => onTabChange(tab)}
-            aria-current={activeTab === tab ? 'page' : undefined}
+            key={tab.id}
+            className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
+            onClick={() => onTabChange(tab.id)}
+            aria-current={activeTab === tab.id ? 'page' : undefined}
           >
-            {tab === 'workspace' && 'Complaint Workspace'}
-            {tab === 'complaints' && 'Complaints'}
-            {tab === 'dashboard' && 'Dashboard'}
+            {tab.label}
           </button>
         ))}
       </nav>
 
       <div className={`ai-status-badge ${isOnline ? 'online' : 'demo'}`}>
         <span className="ai-status-dot" />
-        {isOnline
-          ? `Groq · ${aiStatus?.model || 'gemma2-9b-it'}`
-          : `Demo Mode · Local Rules`}
+        {modelLabel}
       </div>
     </header>
   );
