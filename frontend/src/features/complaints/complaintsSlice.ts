@@ -5,11 +5,11 @@ import type {
 } from './types';
 
 const initialDraft: ComplaintDraft = {
-  source: 'Pharmacy',
+  source: '',
   customer_name: '',
-  customer_type: 'Pharmacy',
+  customer_type: '',
   reporter_contact: '',
-  product_type: 'FDF',
+  product_type: '',
   product_name: '',
   strength_or_grade: '',
   batch_number: '',
@@ -17,7 +17,7 @@ const initialDraft: ComplaintDraft = {
   manufacturing_date: '',
   expiry_date: '',
   complaint_date: '',
-  complaint_category: 'Product Quality',
+  complaint_category: '',
   complaint_description: '',
   originating_site_block: '',
   impacted_non_product_material: '',

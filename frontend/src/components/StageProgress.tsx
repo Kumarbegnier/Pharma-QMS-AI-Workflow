@@ -7,12 +7,12 @@ interface StageProgressProps {
 }
 
 const STAGES: { key: ExtractionStatus; label: string }[] = [
-  { key: 'parsing', label: 'Parsing' },
-  { key: 'extracting', label: 'Extracting' },
-  { key: 'validating', label: 'Validating' },
-  { key: 'assessing', label: 'Risk Assessment' },
-  { key: 'generating', label: 'CAPA' },
-  { key: 'checking_duplicates', label: 'Duplicates' },
+  { key: 'parsing',             label: 'Reading document' },
+  { key: 'extracting',          label: 'Extracting complaint fields' },
+  { key: 'validating',          label: 'Validating & normalizing' },
+  { key: 'assessing',           label: 'Assessing quality risk' },
+  { key: 'generating',          label: 'Generating CAPA suggestions' },
+  { key: 'checking_duplicates', label: 'Checking similar complaints' },
 ];
 
 const STAGE_ORDER = STAGES.map(s => s.key);
@@ -25,24 +25,29 @@ const StageProgress: React.FC<StageProgressProps> = ({ status, progress }) => {
   return (
     <div className="stage-progress">
       <div className="stage-progress-label">
-        <span className="spinner" />
-        AI Processing — {Math.round(progress)}%
+        <span className="spinner spinner-dark" style={{ borderTopColor: '#2563EB' }} />
+        Analyzing — {Math.round(progress)}%
       </div>
+
       <div className="stage-steps">
         {STAGES.map((stage, idx) => {
-          const isDone = idx < currentIdx;
+          const isDone   = idx < currentIdx;
           const isActive = idx === currentIdx;
           return (
-            <span
+            <div
               key={stage.key}
               className={`stage-step ${isActive ? 'active' : ''} ${isDone ? 'done' : ''}`}
             >
-              {isDone ? '✓ ' : ''}{stage.label}
-            </span>
+              <span className="step-icon">
+                {isDone   ? '✓' : isActive ? '●' : '○'}
+              </span>
+              {stage.label}
+            </div>
           );
         })}
       </div>
-      <div className="progress-bar-wrap">
+
+      <div className="progress-bar-wrap" style={{ marginTop: 10 }}>
         <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
       </div>
     </div>

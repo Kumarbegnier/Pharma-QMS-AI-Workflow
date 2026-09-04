@@ -29,7 +29,7 @@ export interface ComplaintDraft {
   customer_name: string;
   customer_type: string;
   reporter_contact: string;
-  product_type: 'FDF' | 'API';
+  product_type: 'FDF' | 'API' | '';
   product_name: string;
   strength_or_grade: string;
   batch_number: string;

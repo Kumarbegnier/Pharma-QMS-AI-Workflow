@@ -10,9 +10,9 @@ interface HeaderProps {
 }
 
 const TABS: { id: Tab; label: string }[] = [
-  { id: 'workspace',   label: '✦ Complaint Workspace' },
-  { id: 'complaints',  label: 'Register' },
-  { id: 'dashboard',   label: 'Dashboard' },
+  { id: 'workspace',  label: 'Complaint Workspace' },
+  { id: 'complaints', label: 'Register' },
+  { id: 'dashboard',  label: 'Dashboard' },
 ];
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
@@ -22,14 +22,11 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   useEffect(() => { dispatch(fetchAIStatus()); }, [dispatch]);
 
   const isOnline = aiStatus?.groq_available;
-  const modelLabel = isOnline
-    ? `llama-3.3-70b · Groq`
-    : 'Demo Mode';
 
   return (
     <header className="header">
       <div className="header-brand">
-        <div className="header-logo" title="AIVOA Pharma QMS">✦</div>
+        <div className="header-logo">QMS</div>
         <div className="header-title">
           AIVOA <span>Pharma QMS</span>
         </div>
@@ -48,9 +45,10 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
         ))}
       </nav>
 
-      <div className={`ai-status-badge ${isOnline ? 'online' : 'demo'}`}>
+      <div className={`ai-status-badge ${isOnline ? 'online' : 'demo'}`}
+        title={isOnline ? `Model: ${aiStatus?.model ?? 'llama-3.3-70b-versatile'}` : 'Add GROQ_API_KEY for full AI'}>
         <span className="ai-status-dot" />
-        {modelLabel}
+        {isOnline ? 'Groq · Llama 3.3 70B' : 'Demo Mode'}
       </div>
     </header>
   );
