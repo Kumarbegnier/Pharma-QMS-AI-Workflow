@@ -163,3 +163,8 @@ pharma-qms-complaints/
 ## License
 
 MIT — see [LICENSE](LICENSE)
+
+
+
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/53e73dc4-cfd3-401d-a655-1f9540429c65" />
+
