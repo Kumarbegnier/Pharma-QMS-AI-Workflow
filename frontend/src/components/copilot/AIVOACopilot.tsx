@@ -11,7 +11,6 @@ import CopilotHeader                         from './CopilotHeader';
 import CapabilityChips                       from './CapabilityChips';
 import ComplaintComposer                     from './ComplaintComposer';
 import AIAnalysisProgress                    from './AIAnalysisProgress';
-import AnalysisResult                        from './AnalysisResult';
 import FileUploadZone                        from '../FileUploadZone';
 
 // ── Welcome message (StrictMode-safe — fires once) ─────────────────────────
@@ -249,14 +248,6 @@ const AIVOACopilot: React.FC = () => {
               <span className="spinner spinner-dark" style={{ width: 12, height: 12 }} />
             </div>
           </div>
-        )}
-
-        {/* ── AnalysisResult (shown after analysis, in scroll area) ──── */}
-        {isAfterAnalysis && analysis && (
-          <AnalysisResult
-            analysis={analysis}
-            aiFieldCount={aiPopulatedFields.length}
-          />
         )}
 
         <div ref={messagesEndRef} />
