@@ -15,7 +15,7 @@
  *   - Activity feed (timeline style) for recent complaints
  */
 
-import React, { useEffect, memo, useMemo } from 'react';
+import React, { useEffect, memo, useMemo, useRef, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { loadStats, loadComplaints } from '../features/complaints/complaintsSlice';
 
@@ -52,6 +52,38 @@ const Shimmer = ({ w = '100%', h = 16, r = 6 }: { w?: string | number; h?: numbe
   }} />
 );
 
+// ── useCountUp — counts from 0 to target over `duration` ms (easeOut) ────────
+function useCountUp(target: number | undefined, duration = 900): number {
+  const [count, setCount] = React.useState(0);
+  const rafRef = useRef<number>(0);
+  const startRef = useRef<number>(0);
+  const prevTarget = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (target === undefined || target === prevTarget.current) return;
+    prevTarget.current = target;
+    const startVal = 0;
+    cancelAnimationFrame(rafRef.current);
+
+    const step = (now: number) => {
+      if (!startRef.current) startRef.current = now;
+      const elapsed = now - startRef.current;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutCubic
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(startVal + (target - startVal) * ease));
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      }
+    };
+    startRef.current = 0;
+    rafRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [target, duration]);
+
+  return count;
+}
+
 // ── KPI card ──────────────────────────────────────────────────────────────────
 
 interface KpiProps {
@@ -60,7 +92,10 @@ interface KpiProps {
   loading: boolean;
 }
 
-const KpiCard = memo<KpiProps>(({ label, value, sub, icon, ringColor, iconBg, loading }) => (
+const KpiCard = memo<KpiProps>(({ label, value, sub, icon, ringColor, iconBg, loading }) => {
+  const displayCount = useCountUp(value);
+
+  return (
   <div style={{
     background: '#FFFFFF', borderRadius: 16,
     border: '1px solid #E2E8F0',
@@ -101,7 +136,7 @@ const KpiCard = memo<KpiProps>(({ label, value, sub, icon, ringColor, iconBg, lo
           letterSpacing: '-1px', lineHeight: 1, marginBottom: 4,
           fontVariantNumeric: 'tabular-nums',
         }}>
-          {value ?? 0}
+          {displayCount}
         </div>
         <div style={{ fontSize: 12, fontWeight: 600, color: '#64748B' }}>{label}</div>
       </div>
@@ -115,7 +150,10 @@ const KpiCard = memo<KpiProps>(({ label, value, sub, icon, ringColor, iconBg, lo
       transition: 'width 0.8s ease 0.3s',
     }} />
   </div>
-));
+  );
+});
+
+
 
 // ── SVG Horizontal Bar Chart (categories) ─────────────────────────────────────
 
