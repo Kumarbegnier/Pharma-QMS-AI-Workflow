@@ -89,7 +89,17 @@
   --shadow:     0 2px 8px rgba(15,23,42,0.07), 0 1px 3px rgba(15,23,42,0.04);
   --shadow-md:  0 4px 16px rgba(15,23,42,0.09), 0 2px 6px rgba(15,23,42,0.05);
   --shadow-card:0 1px 4px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+
+  /* ── Backward-compat accent aliases (used in pages/components) ─────────── */
+  --accent:       #D97706;
+  --accent-dark:  #B45309;
+  --accent-deep:  #92400E;
+  --accent-light: #FFFBEB;
+  --accent-mid:   #FDE68A;
+  --accent-hover: #F59E0B;
+  --accent-border:#FCD34D;
 }
+
 
 /* ══════════════════════════════════════════════════════════════════════════
    Reset + Base
